@@ -89,13 +89,21 @@ This problem presents a robust example of actual vs biased data.  As a data scie
 resp = nsfg.ReadFemResp()
 
 pmf = thinkstats2.Pmf(resp.numkdhh, label='numkdhh')
+
 thinkplot.Pmf(pmf)
+
 thinkplot.Config(xlabel='Kidts under 18', ylabel='Pmf')
+
 biased_pmf = BiasPmf(pmf, label='observed')
+
 thinkplot.PrePlot(2)
+
 thinkplot.Pmfs([pmf, biased_pmf])
+
 thinkplot.Config(xlabel='Children under 18', ylabel='PMF')
+
 print('Actual mean', pmf.Mean())
+
 print('Observed mean', biased_pmf.Mean())
 
 There is a clear representation of the bias that would occur if the children were surveyed and their responses were logged, due to the greater number of responses that would be given with a greater number of children in a household. This more than doubles the average number of children per household. This highlights the importance of data collection and validating the results and what implicit bias they might hold.
