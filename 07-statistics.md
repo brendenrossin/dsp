@@ -70,18 +70,35 @@ Cohen's D is an example of effect size.  Other examples of effect size are:  cor
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
 
 first_weight = firsts.totalwgt_lb.mean()
+
 others_weight = others.totalwgt_lb.mean()
 
 weight_diff = first_weight - others_weight
+
 print(weight_diff)
 
 cohen_weight = CohenEffectSize(firsts.totalwgt_lb, others.totalwgt_lb)
+
 print(cohen_weight)
 
 First children, on average, tend to weigh slightly less than other children. The first children tend to be about 0.09 standard deviations less than other children, which most likely does not have any statistical significance to us.
 
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
+
+resp = nsfg.ReadFemResp()
+
+pmf = thinkstats2.Pmf(resp.numkdhh, label='numkdhh')
+thinkplot.Pmf(pmf)
+thinkplot.Config(xlabel='Kidts under 18', ylabel='Pmf')
+biased_pmf = BiasPmf(pmf, label='observed')
+thinkplot.PrePlot(2)
+thinkplot.Pmfs([pmf, biased_pmf])
+thinkplot.Config(xlabel='Children under 18', ylabel='PMF')
+print('Actual mean', pmf.Mean())
+print('Observed mean', biased_pmf.Mean())
+
+There is a clear representation of the bias that would occur if the children were surveyed and their responses were logged, due to the greater number of responses that would be given with a greater number of children in a household. This more than doubles the average number of children per household. This highlights the importance of data collection and validating the results and what implicit bias they might hold.
 
 ### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
