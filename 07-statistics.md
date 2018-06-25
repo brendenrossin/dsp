@@ -111,6 +111,8 @@ There is a clear representation of the bias that would occur if the children wer
 ### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
 
+Because the random sample function is pulling from the range uniformly, each number within the range has an equal probability of being chosen. This is shown with the CDF of percentile ranks being close to a straight line, which indicates a uniform trend and that there are no spikes to indicate a jump in probability at a specific percentile rank.
+
 ### Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
 
