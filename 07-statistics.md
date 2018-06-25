@@ -128,9 +128,17 @@ thinkplot.Config(xlabel='Random', ylabel='CDF', loc='upper left')
 Because the random sample function is pulling from the range uniformly, each number within the range has an equal probability of being chosen. This is shown with the CDF of percentile ranks being close to a straight line, which indicates a uniform trend and that there are no spikes to indicate a jump in probability at a specific percentile rank.
 
 ### Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
-This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
+This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic.
 
+bottom = dist.cdf(177.8)
 
+top = dist.cdf(185.42)
+
+bmg_range = top - bottom
+
+print(bmg_range)
+
+Approximately 34.3% of men would be eligible to join the Blue Man Group based off of their height alone.
 
 ### Q5. Bayesian (Elvis Presley twin) 
 
