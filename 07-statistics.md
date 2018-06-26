@@ -171,7 +171,7 @@ Therefore, there was approximately a 45.5% chance that Elvis was an identical tw
 ### Q6. Bayesian &amp; Frequentist Comparison  
 How do frequentist and Bayesian statistics compare?
 
->> REPLACE THIS TEXT WITH YOUR RESPONSE
+Frequentist and Bayesian statistics present two different ways to approach the concept of probabilities. Frequentist statistics never quantifies the uncertainty in fixed by unkown values, and views random events probabilistically. Therefore, it would be able to quantify a known probability such as a fair coin flip, but would never guess at the probability of a non-recurring event. Bayesian statistics, however, use probabilities to represent uncertainty in any case. Then, sample data is used to update the probability distribution to help close in on a more accurate "posterior" probability.
 
 ---
 
