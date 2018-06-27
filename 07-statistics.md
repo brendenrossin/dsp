@@ -195,6 +195,34 @@ pearson_skew = PearsonMedianSkewness(sample)
 
 The mean is significantly higher the median, indicating a right skew to income. Pearson's skewness is positive, which also indicates a right skew, and is consistent with the general sentiment of the skew of income values.
 
+high_log_sample = InterpolateSample(income_df, log_upper=7.0)
+
+log_cdf = thinkstats2.Cdf(high_log_sample)
+
+thinkplot.Cdf(log_cdf)
+
+thinkplot.Config(xlabel='Household income (log $)',
+               ylabel='CDF')
+               
+high_sample = np.power(10,high_log_sample)
+
+cdf = thinkstats2.Cdf(high_sample)
+
+thinkplot.Cdf(cdf)
+
+thinkplot.Config(xlabel='Household income ($)',
+               ylabel='CDF')
+
+high_median = Median(high_sample)
+
+high_mean = RawMoment(high_sample, 1)
+
+high_pearson_skew = PearsonMedianSkewness(high_sample)
+
+perc_below_highmean = cdf.Prob(high_mean)
+
+The discrepancy between the mean and the median of the income values increases with the upper bound increased to 10 million because the mean increases significantly while the median isn't affected (no "new" values present). This insinuates that the skew is even further right. However, Pearson's skew is still skewed right, but to a lesser degree.
+
 ### Q10. [Think Stats Chapter 8 Exercise 3](statistics/8-3-scoring.md) (scoring)
 ### Q11. [Think Stats Chapter 9 Exercise 2](statistics/9-2-resampling.md) (resampling)
 
