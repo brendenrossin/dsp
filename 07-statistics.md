@@ -180,7 +180,50 @@ Frequentist and Bayesian statistics present two different ways to approach the c
 The following exercises are optional, but we highly encourage you to complete them if you have the time.
 
 ### Q7. [Think Stats Chapter 7 Exercise 1](statistics/7-1-weight_vs_age.md) (correlation of weight vs. age)
-In this exercise, you will compute the effect size of correlation.  Correlation measures the relationship of two variables, and data science is about exploring relationships in data.    
+In this exercise, you will compute the effect size of correlation.  Correlation measures the relationship of two variables, and data science is about exploring relationships in data.
+
+import first
+
+live, firsts, others = first.MakeFrames()
+
+live = live.dropna(subset=['agepreg', 'totalwgt_lb'])
+
+ages = live.agepreg
+
+weights = live.totalwgt_lb
+
+thinkplot.Scatter(ages, weights)
+
+thinkplot.Show(xlabel = 'Mothers Age',
+               ylabel = 'Birth Weight',
+              alpha = 0.5)
+              
+print('Correlation', Corr(ages, weights))
+
+print('SpearmanCorr', SpearmanCorr(ages,weights))
+
+bins = np.arange(10,45,3)
+
+indices = np.digitize(live.agepreg, bins)
+
+groups = live.groupby(indices)
+
+ages = [group.agepreg.mean() for i, group in groups][1:-1]
+
+cdfs = [thinkstats2.Cdf(group.totalwgt_lb) for i, group in groups][1:-1]
+
+thinkplot.PrePlot(3)
+
+for percent in [75,50,25]:
+    weights = [cdf.Percentile(percent) for cdf in cdfs]
+    label = '%dth' % percent
+    thinkplot.Plot(ages, weights, label=label)
+    
+thinkplot.Config(xlabel="Mother's Age (years)",
+                ylabel="Birth weight (lbs)",
+                xlim=[14,45], legent=True)
+                
+The scatterplot and correlations show a weak linear relationship between the variables. Pearson's correlation is almose 0.07, while Spearman's correlation is over 0.09, which indicates that the relationship is either non-linear, or affected by outliers/skewed. By plotting the percentiles of weight versus age we can see that the relationship isn't entirely linear, with birth weight increasing faster between mother's 15 to 25 than anywhere else in the range.
 
 ### Q8. [Think Stats Chapter 8 Exercise 2](statistics/8-2-sampling_dist.md) (sampling distribution)
 In the theoretical world, all data related to an experiment or a scientific problem would be available.  In the real world, some subset of that data is available.  This exercise asks you to take samples from an exponential distribution and examine how the standard error and confidence intervals vary with the sample size.
